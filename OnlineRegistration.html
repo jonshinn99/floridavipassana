@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gainesville Vipassana Society</title>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/modal.css">
+
+
+<script type="text/javascript">
+let strFullPaymentAmount, strDepositAmount, FinalPaymentAmount, strPackageDescription, strPackageItemNumber;
+
+function SelectAll(id)
+{
+  document.getElementById(id).focus();
+  document.getElementById(id).select();
+}
+
+function SetPackageSelection()
+{
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  strPackageItemNumber = urlSearchParams.get('item_number');
+  document.getElementById('May2026SingleOccupancy').style.display = 'none';
+  document.getElementById('May2026SharedRoom').style.display = 'none';
+  document.getElementById('None').style.display = 'none';
+  switch(strPackageItemNumber) {
+    case 'May2026SingleOccupancy':
+      document.getElementById('May2026SingleOccupancy').style.display = 'block';
+//      document.getElementById('FullPayment').innerHTML = '$650';
+//      document.getElementById('Deposit').innerHTML = '$650';
+//      document.getElementById('FinalPayment').innerHTML = '$650';
+      strFullPaymentAmount = "825.00";
+      strDepositAmount = "825.00";
+      strFinalPaymentAmount = "825.00";
+      strPackageDescription = "Single Occupancy: May 29 - June 3, 2026"
+      break;
+    case 'May2026SharedRoom':
+      document.getElementById('May2026SharedRoom').style.display = 'block';
+//      document.getElementById('FullPayment').innerHTML = '$610';
+//      document.getElementById('Deposit').innerHTML = '$610';
+//      document.getElementById('FinalPayment').innerHTML = '$610';
+      strFullPaymentAmount = "775.00";
+      strDepositAmount = "775.00";
+      strFinalPaymentAmount = "775.00";
+      strPackageDescription = "Shared Room: May 29 - June 3, 2026"
+      break;
+    default:
+      document.getElementById('None').style.display = 'block';
+
+  }
+  SetAmounts();
+}
+
+function SetAmounts() {
+//  let frmPaymentOption = document.frmPaymentSelection.frmPaymentOption;
+  let strPaymentOption = "", strSubtotalAmount = "", strTotalAmount = "", strPaymentMethod = "", fltProcessingFee, strProcessingFee = "";
+//  for (i=0; i < frmPaymentOption.length; i++) {
+//    if (frmPaymentOption[i].checked==true) {
+      strPaymentOption = 'FULL PAYMENT';
+      switch(strPaymentOption) {
+        case 'FULL PAYMENT':
+          strSubtotalAmount = strFullPaymentAmount;
+          break;
+        case 'DEPOSIT':
+          strSubtotalAmount = strDepositAmount;
+          break;
+        case 'FINAL PAYMENT':
+          strSubtotalAmount = strFinalPaymentAmount;
+          break;
+      }
+//    }
+//  }
+
+  let frmPaymentMethod = document.frmPaymentSelection.frmPaymentMethod;
+  for (i=0; i < frmPaymentMethod.length; i++) {
+    if (frmPaymentMethod[i].checked==true) {
+      strPaymentMethod = frmPaymentMethod[i].value;
+     }
+  }
+    
+  if (strSubtotalAmount != '') {
+    if (strSubtotalAmount != '') { document.getElementById('subtotal').innerHTML = '$' + strSubtotalAmount; }
+    switch(strPaymentMethod) {
+      case 'PAYPAL':
+        fltProcessingFee = (Number(strSubtotalAmount) * .03).toFixed(2);
+        strTotalAmount = (Number(fltProcessingFee) + Number(strSubtotalAmount)).toFixed(2).toString();
+        document.getElementById('fee').innerHTML = '$' + fltProcessingFee.toString() + ' (3%)';
+        document.getElementById('total').innerHTML = strTotalAmount;
+        break;
+      case 'ZELLE':
+        strTotalAmount = strSubtotalAmount;
+        document.getElementById('fee').innerHTML = 'N/A';
+        document.getElementById('total').innerHTML = strTotalAmount;
+        break;
+      default:
+        strTotalAmount = '0.00';
+        document.getElementById('fee').innerHTML = 'Select payment method';
+        document.getElementById('total').innerHTML = '';
+    }
+
+    document.frmPayPal.item_name.value = strPackageDescription;
+    document.frmPayPal.item_number.value = strPackageItemNumber;
+    document.frmPayPal.amount.value = strTotalAmount;
+
+    document.getElementById('ZelleDescription').innerHTML = strPackageDescription;
+    document.getElementById('ZelleAmount').innerHTML = '$' + strTotalAmount;
+
+  }
+}
+
+function ProceedToPayment() {
+//  if (document.frmPaymentSelection.frmPaymentOption[0].checked == false && document.frmPaymentSelection.frmPaymentOption[1].checked == false && document.frmPaymentSelection.frmPaymentOption[2].checked == false) {
+//    alert('Please select a payment option to continue.')
+//  }
+//  else
+  if (document.frmPaymentSelection.frmPaymentMethod[0].checked == false && document.frmPaymentSelection.frmPaymentMethod[1].checked == false) {
+    alert('Please select a payment method to continue.')
+  }
+  else if (document.frmPaymentSelection.frmPaymentMethod[0].checked == true) {
+    document.frmPayPal.submit();
+  }
+  else {
+    document.getElementById("myModal").style.display = "block";
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == document.getElementById('myModal')) {
+    document.getElementById("myModal").style.display = "none";
+  }
+}
+</script>
+
+</head>
+
+<body onload="SetPackageSelection();">
+
+
+
+  <map name="NavigationMap">
+    <area alt="About" title="About" href="about.html" coords="175,150,0,202" shape="rect">
+    <area alt="Meditation" title="Meditation" href="meditation.html" coords="175,222,0,273" shape="rect">
+    <area alt="Teachers" title="Teachers" href="teachers.html" coords="175,294,0,347" shape="rect">
+    <area alt="Residential Retreats" title="Residential Retreats" href="residentials.html" coords="171,365,0,420" shape="rect">
+    <area alt="Donate" title="Donate" href="donate.html" coords="175,438,0,492" shape="rect">
+    <area alt="Sitting Group" title="Sitting Group" href="sitting.html" coords="175,510,0,563" shape="rect">
+    <area alt="Video" title="Video" href="video.html" coords="175,583,0,636" shape="rect">
+    <area alt="Audio" title="Audio" href="audio.html" coords="175,655,0,708" shape="rect">
+</map>
+<table width="800" border="0" align="center">
+  <tr valign="top">
+    <td width="177"><div class="navigation"><img src="images/menu.jpg" alt="menu" width="175" height="980" border="0" usemap="#NavigationMap" /></div></td>
+    <td width="613" bgcolor="#D7ECCA">
+
+      <div style="position: relative; width: 613px; height: 215px; background-position: center; background-image: url('images/franciscan_center/Lake1.jpg'); background-size: 613px auto;">
+        <div style="position: absolute; bottom: 0px;  left: 0px; color: #FFFFFF; font-size: 20pt; background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(30,30,30,1)); width: 100%; height: 150px;">&nbsp;</div>
+          <div style="position: absolute; bottom: 35px;  left: 30px; color: #FFFFFF; font-size: 18pt;">Franciscan Center</div>
+          <div style="position: absolute; bottom: 10px;  left: 30px; color: #FFFFFF; font-size: 14pt; background-image: url('images/icon-location-pin.svg'); background-repeat: no-repeat; padding-left: 20px; background-position: 0px 2px;">Tampa, FL</div>
+      </div>
+      <div style="margin: 8px;">
+        <h1 class="Heading" style="text-align: center; margin-bottom: 2px;">Gainesville Vipassana Society</h1>
+        <div style="text-align: center;">
+          <!--<div style="display: inline-block; height: 20px; background-image: url(images/icon-user.svg); background-repeat: no-repeat; padding-left: 22px; padding-top: 2px; background-position: 0px 0px; margin-left: 30px;">Group size: 1 - 25</div>-->
+        </div>
+
+        <div class="highlight-box">
+          <div class="highlight-box-row" id="May2026SingleOccupancy" style="display: none; border-bottom: 0px;margin-top: 0px; margin-bottom:0px; padding-bottom: 0px;">
+            <div>
+              <div class="highlight-box-header">Single Occupancy</div>
+              <div style="margin-top:8px; width: 300px;">May 29 - June 3, 2026</div>
+            </div>
+            <div class="highlight-box-price">
+              <div class="highlight-box-header" style="font-weight: normal;">$825</div>
+            </div>
+          </div>
+
+          <div class="highlight-box-row" id="May2026SharedRoom" style="display: none; border-bottom: 0px;margin-top: 0px; margin-bottom:0px; padding-bottom: 0px;">
+            <div>
+              <div class="highlight-box-header">Shared Room</div>
+              <div style="margin-top:8px; width: 300px;">May 29 - June 3, 2026</div>
+            </div>
+            <div class="highlight-box-price">
+              <div class="highlight-box-header" style="font-weight: normal;">$775</div>
+            </div>
+          </div>
+
+          <div class="highlight-box-row" id="None" style="display: none; border-bottom: 0px;margin-top: 0px;">
+            <div>
+              <div class="highlight-box-header">No Housing Option Selected</div>
+              <div style="margin-top:8px; width: 300px;"><a href="_Local%20Site%20Before%20CloudFlare%20Migration/residentials.html#packages">Click here to select a housing option first</a></div>
+            </div>
+          </div>
+        </div>
+
+        <form name="frmPaymentSelection">
+          <h1 class="Heading">Payment Method</h1>
+          <label><input type="radio" name="frmPaymentMethod" value="PAYPAL" onclick="SetAmounts();" /> PayPal</label><br />
+          <label><input type="radio" name="frmPaymentMethod" value="ZELLE" onclick="SetAmounts();" /> Zelle</label><br />
+
+          <h1 class="Heading">Amount Due</h1>
+            <div style="width: 100px; float: left;">SubTotal:</div> <div id="subtotal" style="font-style:italic;">Select payment option</div>
+            <div style="width: 100px; float: left; clear:left;">Processing Fee:</div> <div id="fee" style="font-style:italic;">Select payment method</div>
+            <div style="border-top: 1px #000000 solid; padding-top: 5px; margin-top: 5px; width: 240px; font-size: 14pt;"><div style="width: 100px; float: left; font-weight: bold; clear:left;">Total: </div><div style="font-weight: bold;" id="total"></div></div>
+          </p>
+          <br style="clear:both;" />
+          <div style="margin-top: 20px;">
+              <button type="button" class="button" name="submit" alt="Proceed to Payment" onclick="ProceedToPayment();" style="float:left; margin-right: 30px;">Proceed to Payment</button>
+              <button type="button" class="button" name="submit" alt="Proceed to Payment" onclick="window.location.href='residentials.html';">Back to Event Info</button>
+          </div>
+        </form>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" name="frmPayPal">
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="GVSinsight@gmail.com">
+              <input type="hidden" name="lc" value="US">
+              <input type="hidden" name="item_name" value="">
+              <input type="hidden" name="item_number" value="">
+              <input type="hidden" name="amount" value="">
+              <input type="hidden" name="currency_code" value="USD">
+              <input type="hidden" name="button_subtype" value="services">
+              <input type="hidden" name="no_note" value="0">
+              <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close" onclick="document.getElementById('myModal').style.display = 'none';">&times;</span>
+            <h1 class="Heading">Zelle Payment</h1>
+            <p style="color: #FF0000;"><strong>IMPORTANT:</strong> In order for us to contact you, you <b>MUST</b> include the following in the description of your Zelle payment: </p>
+              <ul>
+                <li>E-Mail address</li>
+                <li>Dates of the retreat</li>
+                <li>Lodging option you're choosing</li>
+              </ul>
+            <p>Using either your bank or Zelle's website/app, send payment:</p>
+            <div style="float: left; width: 70px; margin-left:20px; font-weight: bold;">To:</div> <div>gvsinsight@gmail.com</div>
+            <div style="float: left; width: 70px; margin-left:20px; font-weight: bold; clear:left;">For:</div> <div id="ZelleDescription"></div>
+            <div style="float: left; width: 70px; margin-left:20px; font-weight: bold; clear:left;">Amount:</div> <div id="ZelleAmount"></div>
+            <p style="clear:left;">We will contact you once payment has been received.</p>
+          </div>
+
+        </div>
+
+      </div>
+      </td>
+  </tr>
+  <tr valign="top">
+    <td></td>
+    <td>
+      <div class="footer">
+          <p>
+          <a href="about.html">about</a> | 
+          <a href="meditation.html">meditation</a> | 
+          <a href="teachers.html">teachers</a> | 
+          <a href="residentials.html">residentials</a> | 
+          <a href="donate.html">donate</a> | 
+          <a href="sitting.html">sitting group</a> | 
+          <a href="video.html">video</a> | 
+          <a href="audio.html">audio</a> | 
+          </p>
+          <p>&copy; GVS, 2012</p>
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

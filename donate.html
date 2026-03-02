@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="assets/styles.css">
+<title>Gainesville Vipassana Society</title>
+<script language="javascript">
+	function validateOneTimeForm(thisForm)
+	{
+		if (thisForm.amount.value == "")
+		{
+			alert("Please enter a donation amount before proceeding.");
+			thisForm.amount.focus();
+			return false;
+		}
+		return true;
+	}
+	function validateRecurringForm(thisForm)
+	{
+		if (thisForm.a3.value == "")
+		{
+			alert("Please enter a donation amount before proceeding.");
+			thisForm.a3.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+
+<body>
+  <map name="NavigationMap">
+    <area alt="About" title="About" href="about.html" coords="175,150,0,202" shape="rect">
+    <area alt="Meditation" title="Meditation" href="meditation.html" coords="175,222,0,273" shape="rect">
+    <area alt="Teachers" title="Teachers" href="teachers.html" coords="175,294,0,347" shape="rect">
+    <area alt="Residential Retreats" title="Residential Retreats" href="residentials.html" coords="171,365,0,420" shape="rect">
+    <area alt="Donate" title="Donate" href="donate.html" coords="175,438,0,492" shape="rect">
+    <area alt="Sitting Group" title="Sitting Group" href="sitting.html" coords="175,510,0,563" shape="rect">
+    <area alt="Video" title="Video" href="video.html" coords="175,583,0,636" shape="rect">
+    <area alt="Audio" title="Audio" href="audio.html" coords="175,655,0,708" shape="rect">
+</map>
+<table width="800" border="0" align="center">
+  <tr valign="top">
+    <td width="177"><div class="navigation"><img src="images/menu.jpg" alt="menu" width="175" height="980" border="0" usemap="#NavigationMap" /></div></td>
+    <td width="613" bgcolor="#D7ECCA"><p>&nbsp;</p>
+      <p><a href="index.html"><img src="gvsname.jpg" alt="gvs" width="359" height="69" border="0" align="right" /></a></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0" cellpadding="10" cellspacing="5">
+        <tr>
+          <td valign="top" bgcolor="#D7ECCA" class="text">
+
+          	<h1 class="Heading">Donate</h1>
+          	<p>Gainesville Vipassana Society is a 501(c)(3) charity, so donations are federally tax-deductible.</p>
+
+          	<h1 class="Heading" style="background-color: #CFDCD1; border-top: 1px solid #293825; border-bottom: 1px solid #293825; padding-left: 10px;">Credit Card or PayPal</h1>
+			
+			<!--<p style="margin-top: 0px;">All donations are processed securely by PayPal. However, you don't need a PayPal account to donate. After you click the appropriate button below, just look for the option to pay by credit card.</p>-->
+<table border="0" cellpadding="1" cellspacing="0" width="480" align="center">
+	<tr>
+		<td width="200" valign="top">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="return validateOneTimeForm(this);"> 
+				<!-- Identify your business so that you can collect the payments. --> 
+				<input type="hidden" name="business" value="GVSinsight@gmail.com"> 
+				<!-- Specify a Donate button. --> 
+				<input type="hidden" name="cmd" value="_donations"> 
+				<!-- Specify details about the contribution --> 
+				<input type="hidden" name="item_name" value="Gainesville Vipassana Society Donation"> 
+				<input type="hidden" name="currency_code" value="USD"> 
+				<!-- Display the payment button. --> 
+	
+		
+				<h3>One-time Donation</h3>
+				<p>Amount: &nbsp $ <input type="text" name="amount" size="8" value="" /></p>
+				<input type="submit" value="Donate Now" class="clsButton" style="width: 120px;" />
+		
+				<img alt="" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" > 
+			</form> 		
+		</td>
+		<td width="40">
+			&nbsp;
+		</td>
+		<td width="240" valign="top">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="return validateRecurringForm(this);" 
+				<!-- Identify your business so that you can collect the payments. --> 
+				<input type="hidden" name="business" value="GVSinsight@gmail.com"> 
+				<!-- Specify a Subscription button. --> 
+				<input type="hidden" name="cmd" value="_xclick-subscriptions"> 
+				<!-- PayPal reattempts failed recurring payments. --> 
+				<input type="hidden" name="sra" value="1"> 
+				<!-- Specify details about the contribution --> 
+				<input type="hidden" name="item_name" value="Gainesville Vipassana Society Donation"> 
+				<input type="hidden" name="currency_code" value="USD"> 
+				<!-- Display the payment button. --> 
+
+				<h3>Recurring Donation (PayPal Only)</h3>
+				<p style="line-height: 2.5;">
+					Amount: &nbsp; $ <input type="text" name="a3" size="8" value="" /><br />
+					Frequency: &nbsp;
+					<select name="p3">
+						<option value="1">Monthly</option>
+						<option value="3">Quarterly</option>
+						<option value="12">Yearly</option>
+					</select>
+					<input type="hidden" name="src" value="1"> 
+					<input type="hidden" name="t3" value="M">
+				</p>
+				<input type="submit" value="Establish Recurring Donation" class="clsButton" style="width: 200px;" />
+		</td>
+	</tr>
+</table>
+
+<h1 class="Heading" style="background-color: #CFDCD1; border-top: 1px solid #293825; border-bottom: 1px solid #293825; padding-left: 10px;">Zelle</h1>
+            <p>Using either your bank or Zelle's website/app, send your donation to:</p>
+            <div style="float: left; width: 70px; margin-left:20px; font-weight: bold;">To:</div> <div>gvsinsight@gmail.com</div>
+            <!--<div style="float: left; width: 70px; margin-left:20px; font-weight: bold; clear:left;">For:</div> <div id="ZelleDescription"></div>
+            <div style="float: left; width: 70px; margin-left:20px; font-weight: bold; clear:left;">Amount:</div> <div id="ZelleAmount"></div>-->
+			
+			
+            <br />
+          <br /></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;</td>
+        </tr>
+        </table></td>
+  </tr>
+  <tr valign="top">
+    <td></td>
+    <td>
+    	<div class="footer">
+	        <p>
+          <a href="about.html">about</a> | 
+          <a href="meditation.html">meditation</a> | 
+          <a href="teachers.html">teachers</a> | 
+          <a href="residentials.html">residentials</a> | 
+          <a href="donate.html">donate</a> | 
+          <a href="sitting.html">sitting group</a> | 
+          <a href="video.html">video</a> | 
+          <a href="audio.html">audio</a> | 
+	          </p>
+	        <p>&copy; GVS, 2012</p>
+	    </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

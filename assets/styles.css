@@ -1,0 +1,130 @@
+body {
+	background-color: #527555;
+}
+.navigation {
+  position:relative;
+}
+
+.navigation::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 270px;
+  background: linear-gradient(rgba(0, 0, 0, 0),rgba(82, 117, 85, 1));
+}
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #293E2F;
+}
+.Heading {
+	color: #21322C;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: large;
+	font-weight: bold;
+	text-align: left;
+}
+body,td,th {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+a:link {
+	color: #060;
+	text-decoration: none;
+}
+a:visited {
+	color: #060;
+	text-decoration: none;
+}
+a:hover {
+	color: #081818;
+	text-decoration: none;
+}
+a:active {
+	color: #081818;
+	text-decoration: none;
+}
+a.white, a.white:link, a.white:visited, a.white:hover, a.white:active {
+  color: #FFFFFF;
+}
+
+.button {
+  display: block;
+  height: 40px;
+  background: #4E9CAF;
+  padding: 10px 27px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  line-height: 22px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #527555;
+}
+
+.text p {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.de-emphasize {
+  color: #888888;
+}
+.footer {
+	 text-align: center;
+	 margin-top: 28px;
+}
+
+.footer a {
+	 color: #D6CEC6;
+}
+
+.audioTable {font-family: arial, helvetica, sans serif;
+font-size: 9pt;
+width: 620px;
+margin-left: 20px;
+	border-color: #682245;	
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+}
+
+
+/* Begin Residentials Formatting CSS */
+.highlight-box {
+  border: 1px #527555 solid;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  padding: 20px;
+}
+.highlight-box-row {
+  position: relative;
+  padding-bottom: 0px;
+}
+.highlight-box > .highlight-box-row:not(:last-child) {
+  padding-bottom: 25px;
+  border-bottom: 1px #CCCCCC solid;
+}
+
+.highlight-box-header {
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+
+
+.highlight-box > .highlight-box-row:not(:first-child) {
+  margin-top: 25px;
+}
+
+.highlight-box-price {
+  position: absolute;
+  left: 315px;
+  top: 0px;
+  text-align: right;
+  width: 102px;
+}
+
+/* End Residentials Formatting CSS */
